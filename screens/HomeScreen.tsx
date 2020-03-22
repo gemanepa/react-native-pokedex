@@ -1,8 +1,18 @@
-import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Pokedex from 'pokedex-promise-v2';
+import React from 'react'
+import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import Pokedex from 'pokedex-promise-v2'
+/* eslint-disable no-unused-vars */
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamList } from '../types'
+/* eslint-enable no-unused-vars */
 
-const MAXIMUM_POKEMON_NUM = 152;
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
+
+interface Props {
+  navigation: HomeScreenNavigationProp;
+}
+
+const MAXIMUM_POKEMON_NUM = 152
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   itemNumber: {
     fontSize: 15,
@@ -28,7 +38,7 @@ const styles = StyleSheet.create({
   },
   itemImage: {
     width: 80,
-    height: 80,
+    height: 80
   },
   typeContainer: {
     flex: 1,
@@ -40,11 +50,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     paddingRight: 2
   }
-});
+})
 
-class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props);
+class HomeScreen extends React.Component<Props> {
+  constructor (props) {
+    super(props)
     this.state = {
       data: [],
       loading: true,
@@ -54,44 +64,44 @@ class HomeScreen extends React.Component {
       pokemonUrls: this.getPokemonUrls()
     }
 
-    this.renderItem = this.renderItem.bind(this);
+    this.renderItem = this.renderItem.bind(this)
   }
 
-  getPokemonUrls() {
-    const pokemonUrls = [];
-    for(let i = 1; i < MAXIMUM_POKEMON_NUM; i++) {
-      pokemonUrls.push(`/api/v2/pokemon/${i}`);
+  getPokemonUrls () {
+    const pokemonUrls = []
+    for (let i = 1; i < MAXIMUM_POKEMON_NUM; i++) {
+      pokemonUrls.push(`/api/v2/pokemon/${i}`)
     }
-    return pokemonUrls;
+    return pokemonUrls
   }
 
-  componentDidMount() {
-    const { pokedex, pokemonUrls } = this.state;
+  componentDidMount () {
+    const { pokedex, pokemonUrls } = this.state
     pokedex.resource(pokemonUrls)
       .then(response => {
         this.setState({
           data: response,
           loading: false
-        });
-      });
+        })
+      })
   }
 
-  renderItem({ item }) {
+  renderItem ({ item }) {
     const transformedId = `${item.id}`
       .padStart(3, '0')
-      .padStart(4, '#');
+      .padStart(4, '#')
 
-    const uri = item.sprites.front_default;
+    const uri = item.sprites.front_default
 
     const types = item.types.map(({ type }) => {
-      const { name } = type;
+      const { name } = type
       return (
-        <Text style={styles.type}>{name}</Text>
-      );
-    });
+        <Text key={`${item.name}_${name}`} style={styles.type}>{name}</Text>
+      )
+    })
 
     const onPress = () => {
-      this.props.navigation.navigate('Details', { item });
+      this.props.navigation.navigate('Details', { item })
     }
 
     return (
@@ -116,15 +126,15 @@ class HomeScreen extends React.Component {
           </View>
           <Image
             style={styles.itemImage}
-            source={{uri}}
+            source={{ uri }}
           />
         </View>
       </TouchableOpacity>
-    );
+    )
   }
 
-  render() {
-    const { data } = this.state;
+  render () {
+    const { data } = this.state
     return this.state.loading ? <Text>Loading ...</Text> : (
       <View style={styles.container}>
         <FlatList
@@ -132,8 +142,8 @@ class HomeScreen extends React.Component {
           renderItem={this.renderItem}
         />
       </View>
-    );
+    )
   }
 }
 
-export default HomeScreen;
+export default HomeScreen

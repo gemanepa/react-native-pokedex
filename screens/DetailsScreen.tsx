@@ -1,6 +1,19 @@
-import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { TYPE_COLOURS } from '../constants';
+import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { TYPE_COLOURS } from '../constants'
+/* eslint-disable no-unused-vars */
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamList } from '../types'
+/* eslint-enable no-unused-vars */
+
+type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>
+type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>
+
+interface Props {
+  route: ProfileScreenRouteProp;
+  navigation: DetailsScreenNavigationProp;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +23,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     backgroundColor: 'white',
-    justifyContent:  'center',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 25,
     paddingBottom: 25
@@ -43,40 +56,40 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: 'center'
   }
-});
+})
 
-function renderTypes({ types }) {
-  const typeOne = types.find(t => t.slot === 1);
-  const typeOneColours = TYPE_COLOURS[typeOne.type.name];
-  const typeTwo = types.find(t => t.slot === 2);
-  const typeTwoColours = typeTwo ? TYPE_COLOURS[typeTwo.type.name] : {};
-  const typeTwoComponenmt = !typeTwo ? null : (
+function renderTypes ({ types }: { types: object[] }) {
+  const typeOne = types.find(t => t.slot === 1)
+  const typeOneColours = TYPE_COLOURS[typeOne.type.name]
+  const typeTwo = types.find(t => t.slot === 2)
+  const typeTwoColours = typeTwo ? TYPE_COLOURS[typeTwo.type.name] : {}
+  const typeTwoComponent = !typeTwo ? null : (
     <View
       style={[styles.typeContainer, { backgroundColor: typeTwoColours.PRIMARY }]}>
       <Text
         style={[styles.typeText, { color: typeTwoColours.SECONDARY }]}>
-          {typeTwo.type.name}
+        {typeTwo.type.name}
       </Text>
     </View>
-  );
+  )
 
   return (
     <View style={styles.typesContainer}>
       <View
-        style={[styles.typeContainer, { backgroundColor: typeOneColours.PRIMARY}]}>
+        style={[styles.typeContainer, { backgroundColor: typeOneColours.PRIMARY }]}>
         <Text
           style={[styles.typeText, { color: typeOneColours.SECONDARY }]}>
           {typeOne.type.name}
         </Text>
       </View>
-      {typeTwoComponenmt}
+      {typeTwoComponent}
     </View>
   )
 }
 
-function DetailsScreen({ route, navigation }) {
-  const { item } = route.params;
-  const uri = `https://img.pokemondb.net/artwork/large/${item.name}.jpg`;
+function DetailsScreen ({ route, navigation }: Props) {
+  const { item } = route.params
+  const uri = `https://img.pokemondb.net/artwork/large/${item.name}.jpg`
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -89,4 +102,4 @@ function DetailsScreen({ route, navigation }) {
   )
 }
 
-export default DetailsScreen;
+export default DetailsScreen
