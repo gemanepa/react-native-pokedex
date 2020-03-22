@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint --fix types.ts App.tsx screens/**/**"
+    "lint": "eslint --fix constants.ts types.ts App.tsx screens/**/**"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
