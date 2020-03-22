@@ -29,7 +29,7 @@ const App = () => (
         name='Home'
         component={HomeScreen}
         options={{
-          title: 'Pokedex',
+          title: 'Pokédex',
           headerStyle: {
             backgroundColor: '#99ccff'
           }
