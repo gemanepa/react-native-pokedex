@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 /* eslint-disable no-unused-vars */
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   imageContainer: {
     backgroundColor: 'white',
@@ -116,7 +116,7 @@ function renderAbilities ({ abilities }: Pokemon) {
         {ability.name}
       </Text>
     )
-  });
+  })
 
   return (
     <View style={styles.abilitiesContainer}>
