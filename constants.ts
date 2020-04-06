@@ -1,74 +1,94 @@
-export const TYPE_COLOURS = {
+export const MAXIMUM_POKEMON_NUM = 152
+
+export const TYPES = {
   grass: {
-    PRIMARY: '#009933',
-    SECONDARY: 'white'
+    PRIMARY: '#63BB5B',
+    SECONDARY: 'white',
+    image: require('./assets/types/grass.png')
   },
   water: {
-    PRIMARY: '#0099ff',
-    SECONDARY: 'white'
+    PRIMARY: '#4D90D5',
+    SECONDARY: 'white',
+    image: require('./assets/types/water.png')
   },
   fire: {
-    PRIMARY: '#ff9900',
-    SECONDARY: 'white'
+    PRIMARY: '#FF9C54',
+    SECONDARY: 'white',
+    image: require('./assets/types/fire.png')
   },
   electric: {
-    PRIMARY: '#ffff99',
-    SECONDARY: 'black'
+    PRIMARY: '#F3D23B',
+    SECONDARY: 'white',
+    image: require('./assets/types/electric.png')
   },
   flying: {
-    PRIMARY: '#ccffff',
-    SECONDARY: 'black'
+    PRIMARY: '#8FA8DD',
+    SECONDARY: 'white',
+    image: require('./assets/types/flying.png')
   },
   bug: {
-    PRIMARY: '#009999',
-    SECONDARY: 'white'
+    PRIMARY: '#90C12C',
+    SECONDARY: 'white',
+    image: require('./assets/types/bug.png')
   },
   poison: {
-    PRIMARY: '#dab3ff',
-    SECONDARY: 'white'
+    PRIMARY: '#AB6AC8',
+    SECONDARY: 'white',
+    image: require('./assets/types/poison.png')
   },
   ground: {
-    PRIMARY: '#cc9900',
-    SECONDARY: 'white'
+    PRIMARY: '#D97746',
+    SECONDARY: 'white',
+    image: require('./assets/types/ground.png')
   },
   rock: {
-    PRIMARY: '#996633',
-    SECONDARY: 'white'
+    PRIMARY: '#C7B78B',
+    SECONDARY: 'white',
+    image: require('./assets/types/rock.png')
   },
   steel: {
-    PRIMARY: '#a6a6a6',
-    SECONDARY: 'white'
+    PRIMARY: '#5A8EA1',
+    SECONDARY: 'white',
+    image: require('./assets/types/steel.png')
   },
   dark: {
-    PRIMARY: '#474747',
-    SECONDARY: 'white'
+    PRIMARY: '#5A5366',
+    SECONDARY: 'white',
+    image: require('./assets/types/dark.png')
   },
   ghost: {
-    PRIMARY: '#666699',
-    SECONDARY: 'white'
+    PRIMARY: '#5269AC',
+    SECONDARY: 'white',
+    image: require('./assets/types/ghost.png')
   },
   fairy: {
-    PRIMARY: '#ffccff',
-    SECONDARY: 'black'
+    PRIMARY: '#FFFFFF',
+    SECONDARY: 'white',
+    image: require('./assets/types/fairy.png')
   },
   normal: {
-    PRIMARY: '#f5f5f0',
-    SECONDARY: 'black'
+    PRIMARY: '#9099A1',
+    SECONDARY: 'white',
+    image: require('./assets/types/normal.png')
   },
   psychic: {
-    PRIMARY: '#a21a80',
-    SECONDARY: 'white'
+    PRIMARY: '#F97176',
+    SECONDARY: 'white',
+    image: require('./assets/types/psychic.png')
   },
   fighting: {
-    PRIMARY: '#bd3900',
-    SECONDARY: 'white'
+    PRIMARY: '#CE4069',
+    SECONDARY: 'white',
+    image: require('./assets/types/fighting.png')
   },
   ice: {
-    PRIMARY: '#9ce2e1',
-    SECONDARY: 'black'
+    PRIMARY: '#74CEC0',
+    SECONDARY: 'white',
+    image: require('./assets/types/ice.png')
   },
   dragon: {
-    PRIMARY: '#1f00bd',
-    SECONDARY: 'white'
+    PRIMARY: '#0A6DC4',
+    SECONDARY: 'white',
+    image: require('./assets/types/dragon.png')
   }
 }

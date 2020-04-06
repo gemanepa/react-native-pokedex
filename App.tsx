@@ -1,9 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import HomeScreen from './screens/HomeScreen'
-import DetailsScreen from './screens/DetailsScreen'
-import { TYPE_COLOURS } from './constants'
+import HomeScreen from './screens/home'
+import DetailsScreen from './screens/details'
+import { TYPES } from './constants'
 /* eslint-disable no-unused-vars */
 import { RootStackParamList } from './types'
 /* eslint-enable no-unused-vars */
@@ -12,7 +12,7 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 const getDetailsOptions = ({ route }) => {
   const { type } = route.params.item.types.find(t => t.slot === 1)
-  const { PRIMARY, SECONDARY } = TYPE_COLOURS[type.name]
+  const { PRIMARY, SECONDARY } = TYPES[type.name]
   return {
     title: route.params.item.name,
     headerStyle: {
@@ -32,10 +32,7 @@ const App = () => (
         name='Home'
         component={HomeScreen}
         options={{
-          title: 'Pokédex',
-          headerStyle: {
-            backgroundColor: '#99ccff'
-          }
+          title: 'Pokédex'
         }}
       />
       <Stack.Screen
