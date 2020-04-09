@@ -1,20 +1,21 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import HomeScreen from './screens/home'
-import DetailsScreen from './screens/details'
-import { TYPES } from './constants'
+import HomeScreen from './src/screens/home'
+import DetailsScreen from './src/screens/details'
+import { TYPES } from './src/constants'
 /* eslint-disable no-unused-vars */
-import { RootStackParamList } from './types'
+import { RootStackParamList } from './src/types'
 /* eslint-enable no-unused-vars */
 
 const Stack = createStackNavigator<RootStackParamList>()
 
 const getDetailsOptions = ({ route }) => {
-  const { type } = route.params.item.types.find(t => t.slot === 1)
-  const { PRIMARY, SECONDARY } = TYPES[type.name]
+  const { pokemon } = route.params
+  const { name, types } = pokemon
+  const { PRIMARY, SECONDARY } = TYPES[types[0].toLowerCase()]
   return {
-    title: route.params.item.name,
+    title: name,
     headerStyle: {
       backgroundColor: PRIMARY
     },
