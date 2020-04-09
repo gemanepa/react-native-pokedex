@@ -105,11 +105,31 @@ class HomeScreen extends React.Component<Props> {
           this.state.loading
             ? <ActivityIndicator />
             : <FlatList
-                data={this.getFilteredData()}
-                renderItem={this.renderPokemon}
-                keyExtractor={(item, index) => `${index}`}
-              />
+              data={this.getFilteredData()}
+              renderItem={this.renderPokemon}
+              keyExtractor={(item, index) => `${index}`}
+            />
         }
+        <View style={{
+          borderTopColor: 'black',
+          borderTopWidth: 1,
+        }}>
+          <Text style={{
+            fontSize: 12,
+            paddingLeft: 20,
+            paddingRight: 20,
+            paddingTop: 5,
+            paddingBottom: 20,
+            backgroundColor: 'white',
+            color: 'black',
+            textAlign: 'center'
+          }}>
+            This unofficial app is not supported or approved by Nintento, Game Freak,
+            or The Pokémon Company. It is not affiliated with either of these companies.
+
+            Pokémon images & names © 1995-2020 Nintendo/Game Freak.
+          </Text>
+        </View>
       </View>
     )
   }

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Sword & Shield Pokedex",
-    "slug": "pokedex",
+    "slug": "playground",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
