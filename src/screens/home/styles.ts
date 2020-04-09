@@ -5,6 +5,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  searchBar: {
+    padding: 5,
+    marginLeft: 15,
+    marginRight: 15,
+    borderColor: 'grey',
+    borderRadius: 25,
+    borderWidth: 1
+  },
   item: {
     height: 100,
     padding: 15,

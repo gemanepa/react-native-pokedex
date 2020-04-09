@@ -5,12 +5,11 @@ import {
   Image,
   Text,
   View,
+  TextInput,
   TouchableOpacity
 } from 'react-native'
-// import Pokedex from 'pokedex-promise-v2'
-import { TYPES } from '../../constants'
+import { getPokemonTypeByName } from '../../helpers'
 import { styles } from './styles'
-// import { getPokemonUrls } from './helpers'
 
 /* eslint-disable no-unused-vars */
 import { Props } from './componentTypes'
@@ -22,9 +21,11 @@ class HomeScreen extends React.Component<Props> {
     this.state = {
       data: [],
       loading: true,
+      searchText: ''
     }
 
     this.renderPokemon = this.renderPokemon.bind(this)
+    this.onChangeSearchText = this.onChangeSearchText.bind(this)
   }
 
   componentDidMount () {
@@ -35,15 +36,26 @@ class HomeScreen extends React.Component<Props> {
     })
   }
 
+  onChangeSearchText (text) {
+    this.setState({ searchText: text })
+  }
+
+  getFilteredData () {
+    if (this.state.searchText.trim().toLowerCase() === '') return this.state.data;
+    const data = this.state.data.filter(pokemon => {
+      return pokemon.name.toLowerCase().includes(this.state.searchText.toLowerCase())
+    })
+    return data;
+  }
+
   renderPokemon (toRender) {
     const pokemon = toRender.item
     const types = pokemon.types.map(typeName => {
-      const type = typeName.toLowerCase()
       return (
         <Image
-          key={`${pokemon.name}_${type}`}
+          key={`${pokemon.name}_${typeName}`}
           style={styles.type}
-          source={TYPES[type].image} />
+          source={getPokemonTypeByName(typeName).image} />
       )
     })
 
@@ -57,7 +69,7 @@ class HomeScreen extends React.Component<Props> {
               style={styles.itemNumber}
               id={pokemon.index}
               key={pokemon.index}>
-              #{pokemon.number}
+              #{pokemon.localNumber}
             </Text>
             <Text
               style={styles.itemName}
@@ -79,10 +91,25 @@ class HomeScreen extends React.Component<Props> {
   }
 
   render () {
-    const { data } = this.state
     return (
       <View style={styles.container}>
-        {this.state.loading ? <ActivityIndicator /> : <FlatList data={data} renderItem={this.renderPokemon} />}
+        <TextInput
+          style={styles.searchBar}
+          onChangeText={this.onChangeSearchText}
+          value={this.state.searchText}
+          clearButtonMode={'always'}
+          maxLength={15}
+          placeholder={'Search by name'}
+        />
+        {
+          this.state.loading
+            ? <ActivityIndicator />
+            : <FlatList
+                data={this.getFilteredData()}
+                renderItem={this.renderPokemon}
+                keyExtractor={(item, index) => `${index}`}
+              />
+        }
       </View>
     )
   }

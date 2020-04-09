@@ -50,23 +50,25 @@ export const styles = StyleSheet.create({
     marginRight: 25,
     marginTop: 2
   },
-  abilitiesContainer: {
+  infoContainer: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 10,
-    margin: 20
+    paddingTop: 7.5,
+    paddingBottom: 7.5,
+    marginLeft: 20,
+    marginRight: 20
   },
-  abilitiesTitle: {
-    fontSize: 30,
+  infoTitle: {
+    fontSize: 22,
     fontWeight: 'bold'
   },
-  abilityText: {
+  infoText: {
     textTransform: 'capitalize',
     fontWeight: 'bold',
     paddingTop: 5,
     paddingBottom: 5
   },
-  abilityDescription: {
+  infoDescription: {
     paddingTop: 5,
     paddingBottom: 5
   }

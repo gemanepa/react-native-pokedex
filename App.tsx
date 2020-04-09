@@ -3,24 +3,32 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import HomeScreen from './src/screens/home'
 import DetailsScreen from './src/screens/details'
-import { TYPES } from './src/constants'
+import { getPokemonTypeByName } from './src/helpers'
 /* eslint-disable no-unused-vars */
-import { RootStackParamList } from './src/types'
+import { RootStackParamList, Pokemon } from './src/types'
 /* eslint-enable no-unused-vars */
 
 const Stack = createStackNavigator<RootStackParamList>()
 
-const getDetailsOptions = ({ route }) => {
+interface StackScreenProps {
+  route: {
+    params: {
+      pokemon: Pokemon;
+    };
+  };
+}
+
+const getDetailsOptions = ({ route }: StackScreenProps) => {
   const { pokemon } = route.params
   const { name, types } = pokemon
-  const { PRIMARY, SECONDARY } = TYPES[types[0].toLowerCase()]
+  const { PRIMARY, SECONDARY } = getPokemonTypeByName(types[0])
   return {
     title: name,
     headerStyle: {
-      backgroundColor: PRIMARY
+      backgroundColor: PRIMARY,
     },
     headerTitleStyle: {
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
     },
     headerTintColor: SECONDARY
   }
@@ -33,7 +41,7 @@ const App = () => (
         name='Home'
         component={HomeScreen}
         options={{
-          title: 'Pokédex'
+          title: 'Sword & Shield Pokédex'
         }}
       />
       <Stack.Screen
