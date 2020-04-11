@@ -1,55 +1,49 @@
-import React from 'react'
-import { Dimensions, Image, Text, View, ScrollView } from 'react-native'
-import { ProgressChart } from 'react-native-chart-kit'
-import { getPokemonTypeByName } from '../../helpers'
-import { styles } from './styles'
+import React from 'react';
+import { Dimensions, Image, Text, View, ScrollView } from 'react-native';
+import { ProgressChart } from 'react-native-chart-kit';
+import { getPokemonTypeByName } from '../../helpers';
+import { styles } from './styles';
 
 /* eslint-disable no-unused-vars */
-import { Pokemon } from '../../types'
-import { Props } from './componentTypes'
+import { Pokemon } from '../../types';
+import { Props } from './componentTypes';
 /* eslint-enable no-unused-vars */
 
 const statColours = {
-  'hp': (opacity = 1) => `rgba(99, 187, 91, ${opacity})`,
-  'attack': (opacity = 1) => `rgba(206, 64, 105, ${opacity})`,
-  'defense': (opacity = 1) => `rgba(243, 210, 59, ${opacity})`,
+  hp: (opacity = 1) => `rgba(99, 187, 91, ${opacity})`,
+  attack: (opacity = 1) => `rgba(206, 64, 105, ${opacity})`,
+  defense: (opacity = 1) => `rgba(243, 210, 59, ${opacity})`,
   'sp. atk': (opacity = 1) => `rgba(171, 106, 200, ${opacity})`,
   'sp. def': (opacity = 1) => `rgba(236, 143, 230, ${opacity})`,
-  'speed': (opacity = 1) => `rgba(116, 206, 192, ${opacity})`,
+  speed: (opacity = 1) => `rgba(116, 206, 192, ${opacity})`
 };
 
 function renderTypes (pokemon) {
   return pokemon.types.map(type => {
-    const { PRIMARY, SECONDARY, image } = getPokemonTypeByName(type)
+    const { PRIMARY, SECONDARY } = getPokemonTypeByName(type);
     return (
       <Text
-        style={[styles.typeText, { color: SECONDARY, backgroundColor: PRIMARY }]}>
+        key={`${pokemon.name}_${type}`}
+        style={[styles.typeText, { color: SECONDARY, backgroundColor: PRIMARY }]}
+      >
         {type}
       </Text>
-    )
+    );
   });
 }
 
 function renderStats (pokemon) {
   const stats = Object.keys(pokemon.baseStats);
-  const { width } = Dimensions.get('window');
-  const { PRIMARY } = getPokemonTypeByName(pokemon.types[0]);
 
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.infoTitle}>Stats</Text>
-      <View style={{
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignContent: 'flex-start',
-        flexWrap: 'wrap'
-      }}>
+      <View style={styles.chartsContainer}>
         {
           stats.map(stat => {
             const value = pokemon.baseStats[stat];
             return (
-              <View>
+              <View key={`chart_${stat}`}>
                 <ProgressChart
                   key={stat}
                   data={{
@@ -58,7 +52,7 @@ function renderStats (pokemon) {
                   }}
                   width={100}
                   height={100}
-                  hideLegend={true}
+                  hideLegend
                   chartConfig={{
                     color: (opacity = 1) => statColours[stat](opacity),
                     labelColor: (opacity = 1) => statColours[stat](opacity),
@@ -67,27 +61,25 @@ function renderStats (pokemon) {
                     backgroundGradientTo: 'white',
                     strokeWidth: 0.3
                   }}
-                  style={{
-                    marginLeft: 20
-                  }}
+                  style={styles.chart}
                 />
                 <Text style={[styles.infoText, { textAlign: 'center' }]}>{stat} ({value})</Text>
               </View>
-            )
+            );
           })
         }
       </View>
     </View>
-  )
+  );
 }
 
 function renderAbilities (pokemon) {
-  const { abilities, types } = pokemon
-  const normalAbilities = abilities.filter(ability => !ability.isHidden)
-  const hiddenAbilities = abilities.filter(ability => ability.isHidden)
-  const colour = getPokemonTypeByName(types[0]).PRIMARY
+  const { abilities, types } = pokemon;
+  const normalAbilities = abilities.filter(ability => !ability.isHidden);
+  const hiddenAbilities = abilities.filter(ability => ability.isHidden);
+  const colour = getPokemonTypeByName(types[0]).PRIMARY;
   const normalAbilityComponents = normalAbilities.map(ability => {
-    const { name, description } = ability
+    const { name, description } = ability;
     return [
       <Text style={[styles.infoText, { color: colour }]} key={name}>
         {name}
@@ -95,10 +87,10 @@ function renderAbilities (pokemon) {
       <Text style={[styles.infoDescription]} key={`${name}_desc`}>
         {description}
       </Text>
-    ]
-  })
+    ];
+  });
   const hiddenAbilityComponents = hiddenAbilities.map(ability => {
-    const { name, description } = ability
+    const { name, description } = ability;
     return [
       <Text style={[styles.infoText, { color: colour }]} key={name}>
         {name} - Hidden Ability
@@ -106,8 +98,8 @@ function renderAbilities (pokemon) {
       <Text style={[styles.infoDescription]} key={`${name}_desc`}>
         {description}
       </Text>
-    ]
-  })
+    ];
+  });
 
   return (
     <View style={styles.infoContainer}>
@@ -117,11 +109,11 @@ function renderAbilities (pokemon) {
         {hiddenAbilityComponents}
       </View>
     </View>
-  )
+  );
 }
 
 function renderBasicInfo (pokemon: Pokemon) {
-  const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY
+  const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY;
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.infoTitle}>About {pokemon.name}</Text>
@@ -190,11 +182,11 @@ function renderBasicInfo (pokemon: Pokemon) {
         </Text>
       </View>
     </View>
-  )
+  );
 }
 
 function renderPokedexEntries (pokemon: Pokemon) {
-  const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY
+  const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY;
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.infoTitle}>#{pokemon.localNumber}</Text>
@@ -215,23 +207,24 @@ function renderPokedexEntries (pokemon: Pokemon) {
         </Text>
       </View>
     </View>
-  )
+  );
 }
 
 function DetailsScreen (props: Props) {
-  const { route } = props
-  const { pokemon } = route.params
-  const { width } = Dimensions.get('window')
-  const uri = pokemon.sprites.artwork
+  const { route } = props;
+  const { pokemon } = route.params;
+  const { width } = Dimensions.get('window');
+  const uri = pokemon.sprites.artwork;
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          resizeMethod={'scale'}
-          resizeMode={'contain'}
+          resizeMethod='scale'
+          resizeMode='contain'
           style={[styles.mainImage, { width, height: 250 }]}
-          source={{ uri }} />
+          source={{ uri }}
+        />
       </View>
       {renderTypes(pokemon)}
       {renderPokedexEntries(pokemon)}
@@ -239,7 +232,7 @@ function DetailsScreen (props: Props) {
       {renderAbilities(pokemon)}
       {renderBasicInfo(pokemon)}
     </ScrollView>
-  )
+  );
 }
 
-export default DetailsScreen
+export default DetailsScreen;

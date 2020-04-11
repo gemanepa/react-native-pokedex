@@ -1,9 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native'
-import { isTablet } from '../../helpers'
+import { StyleSheet } from 'react-native';
+import { isTablet } from '../../helpers';
 
-const { width } = Dimensions.get('window')
-
-const fontSize = 15
+const fontSize = 15;
 
 const phoneStyle = {
   container: {
@@ -50,13 +48,23 @@ const phoneStyle = {
   infoDescription: {
     paddingTop: 5,
     paddingBottom: 5
+  },
+  chartsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignContent: 'flex-start',
+    flexWrap: 'wrap'
+  },
+  chart: {
+    marginLeft: 20
   }
-}
+};
 
 const tabletStyle = {
   ...phoneStyle
-}
+};
 
-const style = isTablet() ? tabletStyle : phoneStyle
+const style = isTablet() ? tabletStyle : phoneStyle;
 
-export const styles = StyleSheet.create(style)
+export const styles = StyleSheet.create(style);

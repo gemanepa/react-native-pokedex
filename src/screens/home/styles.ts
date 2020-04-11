@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { isTablet } from '../../helpers'
+import { StyleSheet } from 'react-native';
+import { isTablet } from '../../helpers';
 
 const phoneStyle = {
   container: {
@@ -17,12 +17,16 @@ const phoneStyle = {
     borderWidth: 1
   },
   item: {
-    height: 100,
-    padding: 15,
+    padding: 5,
+    marginBottom: 5,
+    marginLeft: 15,
+    marginRight: 15,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: 'rgba(247, 247, 247, 0.5)',
+    borderRadius: 10
   },
   itemNumber: {
     fontSize: 15,
@@ -46,8 +50,22 @@ const phoneStyle = {
     width: 25,
     height: 25,
     marginRight: 2
+  },
+  copyright: {
+    fontSize: 12,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 5,
+    paddingBottom: 20,
+    backgroundColor: 'white',
+    color: 'black',
+    textAlign: 'center'
+  },
+  copyrightContainer: {
+    borderTopColor: 'black',
+    borderTopWidth: 1
   }
-}
+};
 
 const tabletStyle = {
   ...phoneStyle,
@@ -62,8 +80,8 @@ const tabletStyle = {
     borderRadius: 10,
     borderWidth: 1
   }
-}
+};
 
-const style = isTablet() ? tabletStyle : phoneStyle
+const style = isTablet() ? tabletStyle : phoneStyle;
 
-export const styles = StyleSheet.create(style)
+export const styles = StyleSheet.create(style);
