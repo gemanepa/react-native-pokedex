@@ -1,4 +1,5 @@
 import React from 'react'
+import { ActivityIndicator } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import HomeScreen from './src/screens/home'
@@ -34,23 +35,27 @@ const getDetailsOptions = ({ route }: StackScreenProps) => {
   }
 }
 
-const App = () => (
-  <NavigationContainer>
-    <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen
-        name='Home'
-        component={HomeScreen}
-        options={{
-          title: 'Sword & Shield Pokédex'
-        }}
-      />
-      <Stack.Screen
-        name='Details'
-        component={DetailsScreen}
-        options={getDetailsOptions}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
-)
+class App extends React.Component {
+  render () {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen
+            name='Home'
+            component={HomeScreen}
+            options={{
+              title: 'Sword & Shield Pokédex'
+            }}
+          />
+          <Stack.Screen
+            name='Details'
+            component={DetailsScreen}
+            options={getDetailsOptions}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
+}
 
 export default App

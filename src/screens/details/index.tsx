@@ -19,27 +19,15 @@ const statColours = {
 };
 
 function renderTypes (pokemon) {
-  const typeComponents = pokemon.types.map(type => {
+  return pokemon.types.map(type => {
     const { PRIMARY, SECONDARY, image } = getPokemonTypeByName(type)
     return (
-      <View
-        key={`${pokemon.name}_${type}`}
-        style={[styles.typeContainer, { backgroundColor: PRIMARY }]}>
-        <Image
-          style={styles.typeIcon}
-          source={image} />
-        <Text
-          style={[styles.typeText, { color: SECONDARY }]}>
-          {type}
-        </Text>
-      </View>
+      <Text
+        style={[styles.typeText, { color: SECONDARY, backgroundColor: PRIMARY }]}>
+        {type}
+      </Text>
     )
-  })
-  return (
-    <View style={styles.typesContainer}>
-      {typeComponents}
-    </View>
-  )
+  });
 }
 
 function renderStats (pokemon) {

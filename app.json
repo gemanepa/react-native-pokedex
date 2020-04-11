@@ -23,7 +23,7 @@
       "./assets/**"
     ],
     "ios": {
-      "supportsTablet": true
+      "requireFullScreen": true
     }
   }
 }

@@ -1,6 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+import { isTablet } from '../../helpers'
 
-export const styles = StyleSheet.create({
+const { width } = Dimensions.get('window')
+
+const fontSize = 15
+
+const phoneStyle = {
   container: {
     backgroundColor: 'white',
     flex: 1,
@@ -10,45 +15,19 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 25,
-    paddingTop: 15
+    paddingBottom: 5,
+    paddingTop: 5
   },
   mainImage: {
     backgroundColor: 'white'
   },
-  typesContainer: {
-    flex: 0.125,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: 50
-  },
-  typeContainer: {
-    borderRadius: 25,
-    borderWidth: 0,
-    height: 50,
-    marginLeft: 5,
-    marginRight: 5,
-    flex: 0.4,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  typeIcon: {
-    flex: 0.25,
-    width: 35,
-    height: 35,
-    marginLeft: 20,
-    marginTop: 7.5
-  },
   typeText: {
-    flex: 0.75,
-    textTransform: 'capitalize',
-    padding: 10,
-    fontSize: 20,
+    width: '100%',
+    textTransform: 'uppercase',
+    fontSize,
     fontWeight: 'bold',
-    height: 50,
-    textAlign: 'center',
-    marginRight: 25,
-    marginTop: 2
+    lineHeight: (fontSize * 0.5) + (fontSize * 2),
+    textAlign: 'center'
   },
   infoContainer: {
     flex: 1,
@@ -72,4 +51,12 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5
   }
-})
+}
+
+const tabletStyle = {
+  ...phoneStyle
+}
+
+const style = isTablet() ? tabletStyle : phoneStyle
+
+export const styles = StyleSheet.create(style)

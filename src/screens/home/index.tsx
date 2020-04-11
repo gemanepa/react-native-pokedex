@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native'
+
 import { getPokemonTypeByName } from '../../helpers'
 import { styles } from './styles'
 

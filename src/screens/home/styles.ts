@@ -1,16 +1,19 @@
 import { StyleSheet } from 'react-native'
+import { isTablet } from '../../helpers'
 
-export const styles = StyleSheet.create({
+const phoneStyle = {
   container: {
     flex: 1,
     backgroundColor: '#fff'
   },
   searchBar: {
-    padding: 5,
-    marginLeft: 15,
-    marginRight: 15,
+    padding: 10,
+    marginBottom: 10,
+    marginTop: 10,
+    marginLeft: 30,
+    marginRight: 30,
     borderColor: 'grey',
-    borderRadius: 25,
+    borderRadius: 10,
     borderWidth: 1
   },
   item: {
@@ -44,4 +47,23 @@ export const styles = StyleSheet.create({
     height: 25,
     marginRight: 2
   }
-})
+}
+
+const tabletStyle = {
+  ...phoneStyle,
+  searchBar: {
+    ...phoneStyle.searchBar,
+    padding: 15,
+    marginBottom: 15,
+    marginTop: 15,
+    marginLeft: 30,
+    marginRight: 30,
+    borderColor: 'grey',
+    borderRadius: 10,
+    borderWidth: 1
+  }
+}
+
+const style = isTablet() ? tabletStyle : phoneStyle
+
+export const styles = StyleSheet.create(style)
