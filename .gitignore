@@ -10,6 +10,7 @@ npm-debug.*
 web-build/
 web-report/
 **/coverage/**
+**/.jest/**
 
 # macOS
 .DS_Store
