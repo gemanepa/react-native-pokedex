@@ -12,6 +12,7 @@ web-report/
 **/coverage/**
 **/.jest/**
 e2e/screenshots
+e2e/artifacts
 
 # macOS
 .DS_Store

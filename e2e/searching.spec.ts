@@ -6,14 +6,6 @@ describe('Searching Pokemon', () => {
     await reloadApp();
   });
 
-  it('should display the home screen on start', async () => {
-    await expect(element(by.id('home'))).toBeVisible();
-  });
-
-  it('should have a search bar', async () => {
-    await expect(element(by.id('search-bar'))).toBeVisible();
-  });
-
   it('should update the list based on my search', async () => {
     await element(by.id('search-bar')).typeText('chu');
     await expect(element(by.id('list-pikachu'))).toBeVisible();
