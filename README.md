@@ -9,7 +9,19 @@ A small side-project which uses
 
 To create a Pokedex app for iOS.
 
+## Home
+Displays a list of Pokémon available in Sword & Shield
+
 <img src="screenshots/home.png" alt="Home" width="300"/>
+
+## Search
+You can search for a Pokémon by name
+
+<img src="screenshots/search.png" alt="Search" width="300"/>
+
+## Details
+You can view a Pokémon's details
+
 <img src="screenshots/details.png" alt="Details" width="300"/>
 
 ## Pre-requisites
@@ -27,9 +39,11 @@ and then you're good to go! Detox has already been configured to run with Expo a
 
 To run the tests just execute `npm run test:e2e`, this will run multiple jobs and do the following:
 1. Pull the latest expo app and fire it up on the device
-2. Sideload the pokedex app in the Simulator
+2. Sideload the pokedex app in the simulator
 3. Execute the tests
 
 Code coverage is difficult at the moment as getting `ts-jest`, `expo` and `react-native` to work together is tricky.
+
+However, the tests have been configured to output logs, videos and screenshots to the `e2e/artifacts/ios` directory.
 
 Pokémon and Pokémon character names are trademarks of Nintendo. I do not (and nor do I claim to) own the Pokémon property.
