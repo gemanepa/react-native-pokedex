@@ -99,6 +99,7 @@ class HomeScreen extends React.Component<Props, State> {
         style={styles.container}
       >
         <TextInput
+          testID='search-bar'
           style={styles.searchBar}
           onChangeText={this.handleChangeText}
           value={this.state.searchText}
@@ -109,6 +110,7 @@ class HomeScreen extends React.Component<Props, State> {
         {
           this.state.loading ? <ActivityIndicator /> : (
             <FlatList
+              testID='pokemon-list'
               data={this.getFilteredData()}
               renderItem={this.renderPokemon}
               keyExtractor={(item, index) => `${index}`}
@@ -116,7 +118,7 @@ class HomeScreen extends React.Component<Props, State> {
           )
         }
         <View style={styles.copyrightContainer}>
-          <Text style={styles.copyright}>
+          <Text testID='copyright-disclaimer' style={styles.copyright}>
             This unofficial app is not supported or approved by Nintento, Game Freak,
             or The Pokémon Company. It is not affiliated with either of these companies.
 
