@@ -219,7 +219,9 @@ function DetailsScreen (props: Props) {
   const uri = pokemon.sprites.artwork;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      testID={`${pokemon.name.toLowerCase()}-details`}
+      style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           resizeMethod='scale'

@@ -7,7 +7,8 @@ jest.setTimeout(120000);
 jasmine.getEnv().addReporter(adapter);
 
 beforeAll(async () => {
-  await init(config);
+  // Don't reinstall the app each time
+  await init(config, { reuse: true });
 });
 
 beforeEach(async () => {

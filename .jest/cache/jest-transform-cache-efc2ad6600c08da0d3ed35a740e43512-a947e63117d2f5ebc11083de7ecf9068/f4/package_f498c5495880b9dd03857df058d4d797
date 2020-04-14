@@ -1,3 +1,4 @@
+7fab9b75603e3631dd669e82353ab4b5
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -8,7 +9,7 @@
     "eject": "expo eject",
     "lint": "semistandard --fix src/**/*.{ts,tsx}",
     "test:clean": "./scripts/get_exponent.sh",
-    "test": "detox test -o jest.config.js"
+    "test": "detox test -o e2e/jest.config.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
@@ -49,7 +50,6 @@
     "expo-detox-hook": "^1.0.10",
     "husky": "^4.2.5",
     "jest": "^25.3.0",
-    "jest-expo": "^37.0.0",
     "ts-jest": "^25.3.1",
     "typescript": "~3.6.3"
   },

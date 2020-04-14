@@ -1,7 +1,7 @@
 import { by, device, expect, element, waitFor } from 'detox';
 import { reloadApp } from 'detox-expo-helpers';
 
-describe('Home', () => {
+describe('Viewing Pokemon', () => {
   beforeAll(async () => {
     await reloadApp();
   });
@@ -14,11 +14,13 @@ describe('Home', () => {
     await expect(element(by.id('pokemon-list'))).toBeVisible();
   });
 
-  it('should have a search bar', async () => {
-    await expect(element(by.id('search-bar'))).toBeVisible();
+  it('should take me to a pokemon details screen when tapped', async () => {
+    await element(by.id('list-cinderace')).tap();
+    await expect(element(by.id('cinderace-details'))).toBeVisible();
   });
 
-  it('should have a copyright disclaimer', async () => {
-    await expect(element(by.id('copyright-disclaimer'))).toBeVisible();
+  it('should take me back to the home screen on tapping back', async () => {
+    await element(by.id('header-back')).tap();
+    await expect(element(by.id('pokemon-list'))).toBeVisible();
   });
 });

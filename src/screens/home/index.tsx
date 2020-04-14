@@ -64,7 +64,10 @@ class HomeScreen extends React.Component<Props, State> {
     const onPress = () => this.props.navigation.navigate('Details', { pokemon });
 
     return (
-      <TouchableOpacity key={`${pokemon.name}_touch`} onPress={onPress}>
+      <TouchableOpacity
+        testID={`list-${pokemon.name.toLowerCase()}`}
+        key={`${pokemon.name}_touch`}
+        onPress={onPress}>
         <View style={styles.item}>
           <View>
             <Text
