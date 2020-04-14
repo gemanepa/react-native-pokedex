@@ -67,7 +67,8 @@ class HomeScreen extends React.Component<Props, State> {
       <TouchableOpacity
         testID={`list-${pokemon.name.toLowerCase()}`}
         key={`${pokemon.name}_touch`}
-        onPress={onPress}>
+        onPress={onPress}
+      >
         <View style={styles.item}>
           <View>
             <Text

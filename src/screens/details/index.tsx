@@ -221,7 +221,8 @@ function DetailsScreen (props: Props) {
   return (
     <ScrollView
       testID={`${pokemon.name.toLowerCase()}-details`}
-      style={styles.container}>
+      style={styles.container}
+    >
       <View style={styles.imageContainer}>
         <Image
           resizeMethod='scale'
