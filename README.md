@@ -9,9 +9,8 @@ A small side-project which uses
 
 To create a Pokedex app for iOS.
 
-![Main Screen](./screenshots/home.png "Home screen")
-
-![Details Screen](./screenshots/details.png "Details screen")
+<img src="screenshots/home.png" alt="Home" width="300"/>
+<img src="screenshots/details.png" alt="Details" width="300"/>
 
 ## Pre-requisites
 1. NodeJS installed
