@@ -26,6 +26,11 @@ To run the E2E Detox tests you'll have to do a bit of setup which can be found o
 and then you're good to go! Detox has already been configured to run with Expo and TypeScript in this project.
 
 On a first test run, you'll need to run `npm run test:clean` to pull the IPA of the expo app.
-After this first pull, you can run `npm run test` freely!
+After this first pull, you can run the following to get the tests going:
+1. `expo start`, this script will never finish
+2. In a different shell, run `expo ios` to open the app in the ios simulator
+3. Run `npm run test` and the tests should start!
+
+Code coverage is difficult at the moment as getting `ts-jest`, `expo` and `react-native` to work together is tricky.
 
 Pokémon and Pokémon character names are trademarks of Nintendo. I do not (and nor do I claim to) own the Pokémon property.
