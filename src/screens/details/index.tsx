@@ -61,7 +61,9 @@ function renderStats (pokemon) {
                     backgroundGradientTo: 'white',
                     strokeWidth: 0.3
                   }}
-                  style={styles.chart}
+                  style={{
+                    marginLeft: 20
+                  }}
                 />
                 <Text style={[styles.infoText, { textAlign: 'center' }]}>{stat} ({value})</Text>
               </View>

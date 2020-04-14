@@ -13,10 +13,10 @@ import { getPokemonTypeByName } from '../../helpers';
 import { styles } from './styles';
 
 /* eslint-disable no-unused-vars */
-import { Props } from './componentTypes';
+import { Props, State } from './componentTypes';
 /* eslint-enable no-unused-vars */
 
-class HomeScreen extends React.Component<Props> {
+class HomeScreen extends React.Component<Props, State> {
   constructor (props) {
     super(props);
     this.state = {
@@ -69,14 +69,12 @@ class HomeScreen extends React.Component<Props> {
           <View>
             <Text
               style={styles.itemNumber}
-              id={pokemon.index}
               key={pokemon.index}
             >
               #{pokemon.localNumber}
             </Text>
             <Text
               style={styles.itemName}
-              id={pokemon.name}
               key={pokemon.name}
             >
               {pokemon.name}
@@ -96,7 +94,10 @@ class HomeScreen extends React.Component<Props> {
 
   render () {
     return (
-      <View style={styles.container}>
+      <View
+        testID='home'
+        style={styles.container}
+      >
         <TextInput
           style={styles.searchBar}
           onChangeText={this.handleChangeText}

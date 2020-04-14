@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { isTablet } from '../../helpers';
 
 const fontSize = 15;
 
-const phoneStyle = {
+export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
@@ -55,16 +54,5 @@ const phoneStyle = {
     justifyContent: 'space-evenly',
     alignContent: 'flex-start',
     flexWrap: 'wrap'
-  },
-  chart: {
-    marginLeft: 20
   }
-};
-
-const tabletStyle = {
-  ...phoneStyle
-};
-
-const style = isTablet() ? tabletStyle : phoneStyle;
-
-export const styles = StyleSheet.create(style);
+});

@@ -1,15 +1,28 @@
 {
   "compilerOptions": {
+    "target": "ES6",
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "jsx": "react-native",
+    "types" : [
+      "node",
+      "react",
+      "react-native",
+      "jasmine",
+      "jest",
+      "detox"
+    ],
     "paths": {
-      "@screens/*": ["screens/*"]
+      "*": [
+        "src/*",
+        "declarations/*"
+      ]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "declarations/**/*.d.ts"]
 }

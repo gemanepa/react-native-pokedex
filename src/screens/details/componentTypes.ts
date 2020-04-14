@@ -8,6 +8,6 @@ type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>
 type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>
 
 export interface Props {
-  route: ProfileScreenRouteProp;
+  route: DetailsScreenRouteProp;
   navigation: DetailsScreenNavigationProp;
 }

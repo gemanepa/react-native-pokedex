@@ -1,6 +1,6 @@
 export type RootStackParamList = {
   Home: undefined;
-  Details: { item: object };
+  Details: { pokemon: Pokemon };
 };
 
 export interface PokemonAbility {
