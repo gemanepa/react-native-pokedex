@@ -7,10 +7,12 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "lint": "semistandard --fix src/**/*.{ts,tsx}",
+    "test:unit": "jest -c unit.jest.config.js",
     "test:clean": "rm -rf .expo/Exponent.app e2e/artifacts/ && ./scripts/get_exponent.sh",
     "test:detox": "detox test -o detox.jest.config.js",
     "test:start": "wait-on http://localhost:19002 && expo ios && sleep 15 && npm run test:detox",
-    "test:e2e": "npm run test:clean && concurrently -c blue,green -s 'first' -k -n EXPO,TESTS 'expo start' 'npm run test:start'; killall 'Simulator'"
+    "test:e2e": "npm run test:clean && concurrently -c blue,green -s 'first' -k -n EXPO,TESTS 'expo start' 'npm run test:start'; killall 'Simulator'",
+    "test:all": "npm run test:unit && npm run test:e2e"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
@@ -53,6 +55,8 @@
     "husky": "^4.2.5",
     "jest": "^25.3.0",
     "jest-expo": "^37.0.0",
+    "react-native-testing-library": "^1.13.0",
+    "react-test-renderer": "^16.13.1",
     "ts-jest": "^25.3.1",
     "typescript": "~3.6.3",
     "wait-on": "^4.0.2"
@@ -68,14 +72,17 @@
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint/eslint-plugin"
-    ]
+    ],
+    "globals": [ "describe", "it", "expect" ]
   },
   "detox": {
     "test-runner": "jest",
     "artifacts": {
       "rootDir": "e2e/artifacts",
       "plugins": {
-        "log": { "enabled": true },
+        "log": {
+          "enabled": true
+        },
         "screenshot": {
           "enabled": true,
           "shouldTakeAutomaticSnapshots": true,
@@ -103,8 +110,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run compile && npm run lint",
-      "pre-push": "npm run test:e2e"
+      "pre-commit": "npm run compile && npm run lint && npm run test:unit",
+      "pre-push": "npm run test:all"
     }
   }
 }

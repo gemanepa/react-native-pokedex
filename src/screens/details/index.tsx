@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dimensions, Image, Text, View, ScrollView } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
+import { styles } from './details.styles';
 import { getPokemonTypeByName } from '../../helpers';
-import { styles } from './styles';
 
 /* eslint-disable no-unused-vars */
 import { Pokemon } from '../../types';
-import { Props } from './componentTypes';
+import { Props } from './details.types';
 /* eslint-enable no-unused-vars */
 
 const statColours = {
@@ -21,8 +21,10 @@ const statColours = {
 function renderTypes (pokemon) {
   return pokemon.types.map(type => {
     const { PRIMARY, SECONDARY } = getPokemonTypeByName(type);
+    const testID = `${pokemon.name.toLowerCase()}-details-type-${type.toLowerCase()}`;
     return (
       <Text
+        testID={testID}
         key={`${pokemon.name}_${type}`}
         style={[styles.typeText, { color: SECONDARY, backgroundColor: PRIMARY }]}
       >
@@ -42,8 +44,21 @@ function renderStats (pokemon) {
         {
           stats.map(stat => {
             const value = pokemon.baseStats[stat];
+            const testID = `${pokemon.name.toLowerCase()}-details-stat-${stat.toLowerCase()}`;
+            const chartConfig = {
+              color: (opacity = 1) => statColours[stat](opacity),
+              labelColor: (opacity = 1) => statColours[stat](opacity),
+              backgroundColor: 'white',
+              backgroundGradientFrom: 'white',
+              backgroundGradientTo: 'white',
+              strokeWidth: 0.3
+            };
+
             return (
-              <View key={`chart_${stat}`}>
+              <View
+                testID={testID}
+                key={`chart_${stat}`}
+              >
                 <ProgressChart
                   key={stat}
                   data={{
@@ -53,14 +68,7 @@ function renderStats (pokemon) {
                   width={100}
                   height={100}
                   hideLegend
-                  chartConfig={{
-                    color: (opacity = 1) => statColours[stat](opacity),
-                    labelColor: (opacity = 1) => statColours[stat](opacity),
-                    backgroundColor: 'white',
-                    backgroundGradientFrom: 'white',
-                    backgroundGradientTo: 'white',
-                    strokeWidth: 0.3
-                  }}
+                  chartConfig={chartConfig}
                   style={{
                     marginLeft: 20
                   }}
@@ -80,13 +88,23 @@ function renderAbilities (pokemon) {
   const normalAbilities = abilities.filter(ability => !ability.isHidden);
   const hiddenAbilities = abilities.filter(ability => ability.isHidden);
   const colour = getPokemonTypeByName(types[0]).PRIMARY;
+  const testIDPrefix = `${pokemon.name.toLowerCase()}-details-ability`;
+
   const normalAbilityComponents = normalAbilities.map(ability => {
     const { name, description } = ability;
     return [
-      <Text style={[styles.infoText, { color: colour }]} key={name}>
+      <Text
+        testID={`${testIDPrefix}-title-${name}`}
+        style={[styles.infoText, { color: colour }]}
+        key={name}
+      >
         {name}
       </Text>,
-      <Text style={[styles.infoDescription]} key={`${name}_desc`}>
+      <Text
+        testID={`${testIDPrefix}-description-${name}`}
+        style={[styles.infoDescription]}
+        key={`${name}_desc`}
+      >
         {description}
       </Text>
     ];
@@ -94,10 +112,18 @@ function renderAbilities (pokemon) {
   const hiddenAbilityComponents = hiddenAbilities.map(ability => {
     const { name, description } = ability;
     return [
-      <Text style={[styles.infoText, { color: colour }]} key={name}>
+      <Text
+        testID={`${testIDPrefix}-title-hidden-${name}`}
+        style={[styles.infoText, { color: colour }]}
+        key={name}
+      >
         {name} - Hidden Ability
       </Text>,
-      <Text style={[styles.infoDescription]} key={`${name}_desc`}>
+      <Text
+        testID={`${testIDPrefix}-description-hidden-${name}`}
+        style={[styles.infoDescription]}
+        key={`${name}_desc`}
+      >
         {description}
       </Text>
     ];
@@ -116,10 +142,11 @@ function renderAbilities (pokemon) {
 
 function renderBasicInfo (pokemon: Pokemon) {
   const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY;
+  const testIDPrefix = `${pokemon.name.toLowerCase()}-details`;
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.infoTitle}>About {pokemon.name}</Text>
-      <View>
+      <View testID={`${testIDPrefix}-galar-no`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Galar Dex
         </Text>
@@ -127,7 +154,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           #{pokemon.localNumber}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-national-no`}>
         <Text style={[styles.infoText, { color: colour }]}>
           National Dex
         </Text>
@@ -135,7 +162,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           #{pokemon.number}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-species`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Species
         </Text>
@@ -143,7 +170,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           {pokemon.species}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-height`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Height
         </Text>
@@ -151,7 +178,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           {pokemon.height}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-weight`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Weight
         </Text>
@@ -159,7 +186,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           {pokemon.weight}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-growth-rate`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Growth Rate
         </Text>
@@ -167,7 +194,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           {pokemon.growthRate}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-egg-cycles`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Egg Cycles
         </Text>
@@ -175,7 +202,7 @@ function renderBasicInfo (pokemon: Pokemon) {
           {pokemon.eggCycles}
         </Text>
       </View>
-      <View>
+      <View testID={`${testIDPrefix}-egg-groups`}>
         <Text style={[styles.infoText, { color: colour }]}>
           Egg Groups
         </Text>
@@ -189,6 +216,7 @@ function renderBasicInfo (pokemon: Pokemon) {
 
 function renderPokedexEntries (pokemon: Pokemon) {
   const colour = getPokemonTypeByName(pokemon.types[0]).PRIMARY;
+  const testIDName = pokemon.name.toLowerCase();
   return (
     <View style={styles.infoContainer}>
       <Text style={styles.infoTitle}>#{pokemon.localNumber}</Text>
@@ -196,7 +224,10 @@ function renderPokedexEntries (pokemon: Pokemon) {
         <Text style={[styles.infoText, { color: colour }]}>
           Sword
         </Text>
-        <Text style={[styles.infoDescription]}>
+        <Text
+          testID={`${testIDName}-details-entries-sword`}
+          style={[styles.infoDescription]}
+        >
           {pokemon.pokedexEntries.sword}
         </Text>
       </View>
@@ -204,7 +235,10 @@ function renderPokedexEntries (pokemon: Pokemon) {
         <Text style={[styles.infoText, { color: colour }]}>
           Shield
         </Text>
-        <Text style={[styles.infoDescription]}>
+        <Text
+          testID={`${testIDName}-details-entries-shield`}
+          style={[styles.infoDescription]}
+        >
           {pokemon.pokedexEntries.shield}
         </Text>
       </View>
@@ -217,14 +251,19 @@ function DetailsScreen (props: Props) {
   const { pokemon } = route.params;
   const { width } = Dimensions.get('window');
   const uri = pokemon.sprites.artwork;
+  const testIDName = pokemon.name.toLowerCase();
 
   return (
     <ScrollView
-      testID={`${pokemon.name.toLowerCase()}-details`}
+      testID={`${testIDName}-details`}
       style={styles.container}
     >
-      <View style={styles.imageContainer}>
+      <View
+        testID={`${testIDName}-details-image-container`}
+        style={styles.imageContainer}
+      >
         <Image
+          testID={`${testIDName}-details-image`}
           resizeMethod='scale'
           resizeMode='contain'
           style={[styles.mainImage, { width, height: 250 }]}

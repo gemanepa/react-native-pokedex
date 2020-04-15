@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 
 import { getPokemonTypeByName } from '../../helpers';
-import { styles } from './styles';
+import { styles } from './home.styles';
 
 /* eslint-disable no-unused-vars */
-import { Props, State } from './componentTypes';
+import { Props, State } from './home.types';
 /* eslint-enable no-unused-vars */
 
 class HomeScreen extends React.Component<Props, State> {
