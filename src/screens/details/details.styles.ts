@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 const fontSize = 15;
 
-/* istanbul ignore next */
 export const statColours = {
   hp: (opacity = 1) => `rgba(99, 187, 91, ${opacity})`,
   attack: (opacity = 1) => `rgba(206, 64, 105, ${opacity})`,
@@ -13,6 +12,10 @@ export const statColours = {
 };
 
 export const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
   container: {
     backgroundColor: 'white',
     flex: 1,

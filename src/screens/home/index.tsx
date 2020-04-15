@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   View,
+  SafeAreaView,
   TextInput,
   TouchableOpacity
 } from 'react-native';
@@ -104,7 +105,7 @@ class HomeScreen extends React.Component<Props, State> {
 
   render () {
     return (
-      <View
+      <SafeAreaView
         testID='home'
         style={styles.container}
       >
@@ -135,7 +136,7 @@ class HomeScreen extends React.Component<Props, State> {
             Pokémon images & names © 1995-2020 Nintendo/Game Freak.
           </Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

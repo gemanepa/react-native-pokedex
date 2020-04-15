@@ -55,7 +55,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 5,
-    paddingBottom: 20,
     backgroundColor: 'white',
     color: 'black',
     textAlign: 'center'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, Text, View, ScrollView } from 'react-native';
+import { Dimensions, Image, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
 import { styles, statColours } from './details.styles';
 import { getPokemonTypeByName } from '../../helpers';
@@ -246,28 +246,30 @@ function DetailsScreen (props: Props) {
   const testIDName = pokemon.name.toLowerCase();
 
   return (
-    <ScrollView
-      testID={`${testIDName}-details`}
-      style={styles.container}
-    >
-      <View
-        testID={`${testIDName}-details-image-container`}
-        style={styles.imageContainer}
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        testID={`${testIDName}-details`}
+        style={styles.container}
       >
-        <Image
-          testID={`${testIDName}-details-image`}
-          resizeMethod='scale'
-          resizeMode='contain'
-          style={[styles.mainImage, { width, height: 250 }]}
-          source={{ uri }}
-        />
-      </View>
-      {renderTypes(pokemon)}
-      {renderPokedexEntries(pokemon)}
-      {renderStats(pokemon)}
-      {renderAbilities(pokemon)}
-      {renderBasicInfo(pokemon)}
-    </ScrollView>
+        <View
+          testID={`${testIDName}-details-image-container`}
+          style={styles.imageContainer}
+        >
+          <Image
+            testID={`${testIDName}-details-image`}
+            resizeMethod='scale'
+            resizeMode='contain'
+            style={[styles.mainImage, { width, height: 250 }]}
+            source={{ uri }}
+          />
+        </View>
+        {renderTypes(pokemon)}
+        {renderPokedexEntries(pokemon)}
+        {renderStats(pokemon)}
+        {renderAbilities(pokemon)}
+        {renderBasicInfo(pokemon)}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
