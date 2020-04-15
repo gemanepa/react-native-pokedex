@@ -1,4 +1,14 @@
 {
+  "name": "sword-shield-pokedex",
+  "author": "Samuel Barker <dev@sam-barker.co.uk> (www.sam-barker.co.uk)",
+  "contributors": [
+    "Samuel Barker <dev@sam-barker.co.uk> (www.sam-barker.co.uk)"
+  ],
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sam-barker/react-native-expo-pokedex.git"
+  },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "compile": "tsc",
@@ -73,7 +83,12 @@
     "plugins": [
       "@typescript-eslint/eslint-plugin"
     ],
-    "globals": [ "describe", "it", "expect", "jest" ]
+    "globals": [
+      "describe",
+      "it",
+      "expect",
+      "jest"
+    ]
   },
   "detox": {
     "test-runner": "jest",

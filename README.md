@@ -28,10 +28,20 @@ You can view a Pokémon's details
 <img src="screenshots/details.png" alt="Details" width="300"/>
 
 ## Pre-requisites
-1. NodeJS installed
-2. NPM installed
-3. Brew installed
-4. Python installed
+1. NodeJS & NPM
+2. Expo CLI
+3. Brew
+4. Python
+
+## Running the app
+1. `npm install`
+2. `expo start`
+3. Install the Expo app on your device
+4. Scan the QA code presented and away you go!
+
+## Running the unit tests
+1. `npm install`
+2. `npm run test:unit`
 
 ## Running E2E Tests
 To run the E2E Detox tests you'll have to do a bit of setup which can be found on [this](https://blog.expo.io/testing-expo-apps-with-detox-and-react-native-testing-library-7fbdbb82ac87) blog post. In summary you'll need to do the following:
