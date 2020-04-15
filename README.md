@@ -1,7 +1,5 @@
 # React-Native Expo Pokédex
 
-[![js-semistandard-style](https://cdn.rawgit.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)
-
 A small side-project which uses
 * TypeScript
 * React-Native
