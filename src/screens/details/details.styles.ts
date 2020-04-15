@@ -2,6 +2,16 @@ import { StyleSheet } from 'react-native';
 
 const fontSize = 15;
 
+/* istanbul ignore next */
+export const statColours = {
+  hp: (opacity = 1) => `rgba(99, 187, 91, ${opacity})`,
+  attack: (opacity = 1) => `rgba(206, 64, 105, ${opacity})`,
+  defense: (opacity = 1) => `rgba(243, 210, 59, ${opacity})`,
+  'sp. atk': (opacity = 1) => `rgba(171, 106, 200, ${opacity})`,
+  'sp. def': (opacity = 1) => `rgba(236, 143, 230, ${opacity})`,
+  speed: (opacity = 1) => `rgba(116, 206, 192, ${opacity})`
+};
+
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',

@@ -73,7 +73,7 @@
     "plugins": [
       "@typescript-eslint/eslint-plugin"
     ],
-    "globals": [ "describe", "it", "expect" ]
+    "globals": [ "describe", "it", "expect", "jest" ]
   },
   "detox": {
     "test-runner": "jest",

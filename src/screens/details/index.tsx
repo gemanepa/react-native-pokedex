@@ -1,22 +1,13 @@
 import React from 'react';
 import { Dimensions, Image, Text, View, ScrollView } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
-import { styles } from './details.styles';
+import { styles, statColours } from './details.styles';
 import { getPokemonTypeByName } from '../../helpers';
 
 /* eslint-disable no-unused-vars */
 import { Pokemon } from '../../types';
 import { Props } from './details.types';
 /* eslint-enable no-unused-vars */
-
-const statColours = {
-  hp: (opacity = 1) => `rgba(99, 187, 91, ${opacity})`,
-  attack: (opacity = 1) => `rgba(206, 64, 105, ${opacity})`,
-  defense: (opacity = 1) => `rgba(243, 210, 59, ${opacity})`,
-  'sp. atk': (opacity = 1) => `rgba(171, 106, 200, ${opacity})`,
-  'sp. def': (opacity = 1) => `rgba(236, 143, 230, ${opacity})`,
-  speed: (opacity = 1) => `rgba(116, 206, 192, ${opacity})`
-};
 
 function renderTypes (pokemon) {
   return pokemon.types.map(type => {
@@ -45,9 +36,10 @@ function renderStats (pokemon) {
           stats.map(stat => {
             const value = pokemon.baseStats[stat];
             const testID = `${pokemon.name.toLowerCase()}-details-stat-${stat.toLowerCase()}`;
+            const colourFunc = (opacity = 1) => statColours[stat](opacity);
             const chartConfig = {
-              color: (opacity = 1) => statColours[stat](opacity),
-              labelColor: (opacity = 1) => statColours[stat](opacity),
+              color: colourFunc,
+              labelColor: colourFunc,
               backgroundColor: 'white',
               backgroundGradientFrom: 'white',
               backgroundGradientTo: 'white',
