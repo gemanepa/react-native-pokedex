@@ -6,8 +6,8 @@ const config = require('../package.json').detox;
 jest.setTimeout(120000);
 jasmine.getEnv().addReporter(adapter);
 
+
 beforeAll(async () => {
-  // Don't reinstall the app each time
   await init(config, { reuse: true });
 });
 

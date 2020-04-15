@@ -18,11 +18,15 @@
     "eject": "expo eject",
     "lint": "semistandard --fix src/**/*.{ts,tsx}",
     "test:unit": "jest -c unit.jest.config.js",
-    "test:clean": "rm -rf .expo/Exponent.app e2e/artifacts/ && ./scripts/get_exponent.sh",
-    "test:detox": "detox test -o detox.jest.config.js",
-    "test:start": "wait-on http://localhost:19002 && expo ios && sleep 15 && npm run test:detox",
-    "test:e2e": "npm run test:clean && concurrently -c blue,green -s 'first' -k -n EXPO,TESTS 'expo start' 'npm run test:start'; killall 'Simulator'",
-    "test:all": "npm run test:unit && npm run test:e2e"
+    "test:ios:clean": "rm -rf e2e/artifacts/ && ./scripts/get_exponent_ios.sh",
+    "test:android:clean": "rm -rf e2e/artifacts/ && ./scripts/get_exponent_android.sh",
+    "test:ios:detox": "detox test -o detox.jest.config.js --configuration ios",
+    "test:android:detox": "detox test -o detox.jest.config.js --configuration android",
+    "test:ios:start": "wait-on http://localhost:19002 && expo ios && sleep 15 && npm run test:ios:detox",
+    "test:android:start": "wait-on http://localhost:19002 && expo android && sleep 15 && npm run test:android:detox",
+    "test:ios:e2e": "concurrently -c blue,green -s 'first' -k -n EXPO,TESTS 'expo start --no-dev' 'npm run test:ios:start'; killall 'Simulator'",
+    "test:android:e2e": "concurrently -c blue,green -s 'first' -k -n EXPO,TESTS 'expo start --no-dev' 'npm run test:android:start'; killall 'qemu-system--x86_64'",
+    "test:all": "npm run test:unit && npm run test:ios:e2e"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
@@ -95,6 +99,9 @@
     "artifacts": {
       "rootDir": "e2e/artifacts",
       "plugins": {
+        "instrumentation": {
+          "enabled": false
+        },
         "log": {
           "enabled": true
         },
@@ -110,7 +117,7 @@
       }
     },
     "configurations": {
-      "ios.sim": {
+      "ios": {
         "binaryPath": ".expo/Exponent.app/",
         "type": "ios.simulator",
         "name": "iPhone 11 Pro Max",
@@ -119,6 +126,14 @@
           "plugins": {
             "video": "all"
           }
+        }
+      },
+      "android": {
+        "testBinaryPath": ".expo/Exponent.apk",
+        "binaryPath": ".expo/Exponent.apk",
+        "type": "android.emulator",
+        "device": {
+          "avdName": "Pixel_3_XL"
         }
       }
     }
