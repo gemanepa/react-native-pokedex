@@ -8,7 +8,7 @@ jasmine.getEnv().addReporter(adapter);
 
 
 beforeAll(async () => {
-  await init(config, { reuse: true });
+  await init(config);
 });
 
 beforeEach(async () => {

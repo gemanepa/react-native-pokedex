@@ -1,9 +1,8 @@
 import { by, device, expect, element, waitFor } from 'detox';
-import { reloadApp } from 'detox-expo-helpers';
 
 describe('Viewing Pokemon', () => {
   beforeAll(async () => {
-    await reloadApp();
+    await device.reloadReactNative();
   });
 
   it('should display the home screen on start', async () => {

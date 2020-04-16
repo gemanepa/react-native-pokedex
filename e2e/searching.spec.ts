@@ -1,9 +1,8 @@
 import { by, device, expect, element, waitFor } from 'detox';
-import { reloadApp } from 'detox-expo-helpers';
 
 describe('Searching Pokemon', () => {
   beforeAll(async () => {
-    await reloadApp();
+    await device.reloadReactNative();
   });
 
   it('should update the list based on my search', async () => {

@@ -1,12 +1,12 @@
 import React from 'react'
 import { ActivityIndicator } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
-import HomeScreen from './src/screens/home'
-import DetailsScreen from './src/screens/details'
-import { getPokemonTypeByName } from './src/helpers'
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from './src/screens/home';
+import DetailsScreen from './src/screens/details';
+import { getPokemonTypeByName } from './src/helpers';
 /* eslint-disable no-unused-vars */
-import { RootStackParamList, Pokemon } from './src/types'
+import { RootStackParamList, Pokemon } from './src/types';
 /* eslint-enable no-unused-vars */
 
 const Stack = createStackNavigator<RootStackParamList>()
