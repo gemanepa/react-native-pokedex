@@ -6,6 +6,7 @@ import {
   Text,
   View,
   SafeAreaView,
+  StatusBar,
   TextInput,
   TouchableOpacity
 } from 'react-native';
@@ -110,6 +111,13 @@ class HomeScreen extends React.Component<Props, State> {
         testID='home'
         style={styles.container}
       >
+        <StatusBar
+          barStyle='dark-content'
+          hidden={false}
+          backgroundColor='white'
+          translucent={false}
+          networkActivityIndicatorVisible
+        />
         <TextInput
           testID='search-bar'
           style={styles.searchBar}
@@ -118,6 +126,7 @@ class HomeScreen extends React.Component<Props, State> {
           clearButtonMode='always'
           maxLength={15}
           placeholder='Search by name'
+          placeholderTextColor='grey'
         />
         {
           this.state.loading ? <ActivityIndicator /> : (

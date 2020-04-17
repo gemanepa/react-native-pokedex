@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
     marginRight: 30,
     borderColor: 'grey',
     borderRadius: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    color: 'black'
   },
   item: {
     padding: 5,
