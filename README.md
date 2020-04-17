@@ -1,5 +1,7 @@
 # React-Native Pokédex
 
+[![CircleCI](https://circleci.com/gh/sam-barker/react-native-pokedex.svg?style=shield)](https://circleci.com/gh/sam-barker/react-native-pokedex)
+
 A small side-project which uses
 * TypeScript
 * React-Native
@@ -8,7 +10,7 @@ A small side-project which uses
 * React-native-testing-library
 * Jest
 
-To create a Pokedex app for iOS.
+To create a Pokedex app for iOS & Android.
 
 ## Home
 Displays a list of Pokémon available in Sword & Shield
@@ -57,3 +59,5 @@ To run the tests just execute `yarn run test:all`, this will run multiple jobs a
 The tests have been configured to output logs, videos and screenshots to the `e2e/artifacts` directory.
 
 Pokémon and Pokémon character names are trademarks of Nintendo. I do not (and nor do I claim to) own the Pokémon property.
+
+App design & implementation © Samuel Barker, 2020
