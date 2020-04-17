@@ -1,5 +1,6 @@
 import React from 'react'
 import { ActivityIndicator } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/home';
@@ -36,6 +37,10 @@ const getDetailsOptions = ({ route }: StackScreenProps) => {
 }
 
 class App extends React.Component {
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   render () {
     return (
       <NavigationContainer>
