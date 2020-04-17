@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/sam-barker/react-native-pokedex.svg?style=shield)](https://circleci.com/gh/sam-barker/react-native-pokedex)
 
-A small side-project which uses
+Uses
 * TypeScript
 * React-Native
 * PokemonDB

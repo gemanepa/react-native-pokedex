@@ -1,31 +1,41 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  rn: react-native-community/react-native@4.1.0
+
 jobs:
-  build:
-    executor:
-      name: node/default
+  checkout_code:
+    executor: rn/linux_js
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-            - run: yarn compile
-            - run: yarn lint
-  test:
-    executor:
-      name: node/default
+      - persist_to_workspace:
+          root: .
+          paths: .
+  analyse_ts:
+    executor: rn/linux_js
     steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-            - run: yarn test:unit
+      - attach_workspace:
+          at: .
+      - rn/yarn_install
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Typescript
+          command: yarn compile
+      - run:
+          name: Unit Tests
+          command: yarn test:unit
+
 workflows:
-  version: 2
-  build-and-test:
+  test:
     jobs:
-      - build
-      - test:
+      - checkout_code
+      - analyse_ts:
           requires:
-            - build
+            - checkout_code
+      - rn/android_build:
+          name: build_android_release
+          project_path: "android"
+          build_type: release
+          requires:
+            - analyse_ts
