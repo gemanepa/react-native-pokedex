@@ -14,44 +14,13 @@ import { getPokemonTypeByName } from '../../helpers';
 import { styles } from './home.styles';
 
 /* eslint-disable no-unused-vars */
-import { Props, State } from './home.types';
+import { Props, State, PokemonListItemProps } from './home.types';
+import { Pokemon } from '../../types';
 /* eslint-enable no-unused-vars */
 
-class HomeScreen extends React.Component<Props, State> {
-  constructor (props) {
-    super(props);
-    this.state = {
-      data: [],
-      loading: true,
-      searchText: ''
-    };
-
-    this.renderPokemon = this.renderPokemon.bind(this);
-    this.handleChangeText = this.handleChangeText.bind(this);
-  }
-
-  componentDidMount () {
-    const { pokemon } = require('../../../assets/data/json/pokemonList.json');
-    this.setState({
-      loading: false,
-      data: pokemon
-    });
-  }
-
-  handleChangeText (text) {
-    this.setState({ searchText: text });
-  }
-
-  getFilteredData () {
-    if (this.state.searchText.trim().toLowerCase() === '') return this.state.data;
-    const data = this.state.data.filter(pokemon => {
-      return pokemon.name.toLowerCase().includes(this.state.searchText.toLowerCase());
-    });
-    return data;
-  }
-
-  renderPokemon (toRender) {
-    const pokemon = toRender.item;
+class PokemonListItem extends React.PureComponent<PokemonListItemProps> {
+  render () {
+    const pokemon = this.props.data;
     const types = pokemon.types.map(typeName => {
       return (
         <Image
@@ -102,6 +71,38 @@ class HomeScreen extends React.Component<Props, State> {
       </TouchableOpacity>
     );
   }
+}
+
+class HomeScreen extends React.Component<Props, State> {
+  constructor (props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: true,
+      searchText: ''
+    };
+    this.handleChangeText = this.handleChangeText.bind(this);
+  }
+
+  componentDidMount () {
+    const { pokemon } = require('../../../assets/data/json/pokemonList.json');
+    this.setState({
+      loading: false,
+      data: pokemon
+    });
+  }
+
+  handleChangeText (text) {
+    this.setState({ searchText: text });
+  }
+
+  getFilteredData (): any {
+    if (this.state.searchText.trim().toLowerCase() === '') return this.state.data;
+    const data = this.state.data.filter(pokemon => {
+      return pokemon.name.toLowerCase().includes(this.state.searchText.toLowerCase());
+    });
+    return data;
+  }
 
   render () {
     return (
@@ -120,10 +121,10 @@ class HomeScreen extends React.Component<Props, State> {
         />
         {
           this.state.loading ? <ActivityIndicator /> : (
-            <FlatList
+            <FlatList<Pokemon>
               testID='pokemon-list'
               data={this.getFilteredData()}
-              renderItem={this.renderPokemon}
+              renderItem={({ item }) => <PokemonListItem data={item} navigation={this.props.navigation} />}
               keyExtractor={(item, index) => `${index}`}
             />
           )
