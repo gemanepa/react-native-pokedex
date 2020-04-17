@@ -14,8 +14,3 @@ export interface State {
   loading: boolean;
   searchText: string;
 }
-
-export interface PokemonListItemProps {
-  data: Pokemon,
-  navigation: HomeScreenNavigationProp;
-}

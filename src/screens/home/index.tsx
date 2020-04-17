@@ -2,76 +2,20 @@ import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Image,
   Text,
   View,
   SafeAreaView,
   StatusBar,
-  TextInput,
-  TouchableOpacity
+  TextInput
 } from 'react-native';
+import PokemonListItem from './children/PokemonListItem';
 
-import { getPokemonTypeByName } from '../../helpers';
 import { styles } from './home.styles';
 
 /* eslint-disable no-unused-vars */
-import { Props, State, PokemonListItemProps } from './home.types';
+import { Props, State } from './home.types';
 import { Pokemon } from '../../types';
 /* eslint-enable no-unused-vars */
-
-
-const PokemonListItem = React.memo(function PokemonListItem(props: PokemonListItemProps) {
-  const pokemon = props.data;
-  const types = pokemon.types.map(typeName => {
-    return (
-      <Image
-        key={`${pokemon.name}_${typeName}`}
-        style={styles.type}
-        source={getPokemonTypeByName(typeName).image}
-      />
-    );
-  });
-
-  const onPress = () => props.navigation.navigate('Details', { pokemon });
-  const testIDPrefix = `list-${pokemon.name.toLowerCase()}`;
-  return (
-    <TouchableOpacity
-      testID={testIDPrefix}
-      key={`${pokemon.name}_touch`}
-      onPress={onPress}
-    >
-      <View style={styles.item}>
-        <View>
-          <Text
-            testID={`${testIDPrefix}-number`}
-            style={styles.itemNumber}
-            key={pokemon.index}
-          >
-            #{pokemon.localNumber}
-          </Text>
-          <Text
-            testID={`${testIDPrefix}-name`}
-            style={styles.itemName}
-            key={pokemon.name}
-          >
-            {pokemon.name}
-          </Text>
-          <View
-            testID={`${testIDPrefix}-types`}
-            style={styles.typeContainer}
-          >
-            {types}
-          </View>
-        </View>
-        <Image
-          testID={`${testIDPrefix}-image`}
-          style={styles.itemImage}
-          source={{ uri: pokemon.sprites.home }}
-        />
-      </View>
-    </TouchableOpacity>
-  );
-})
 
 class HomeScreen extends React.Component<Props, State> {
   constructor (props) {
