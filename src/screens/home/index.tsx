@@ -110,12 +110,12 @@ class HomeScreen extends React.Component<Props, State> {
         testID='home'
         style={styles.container}
       >
-        <StatusBar 
-          barStyle='dark-content' 
+        <StatusBar
+          barStyle='dark-content'
           hidden={false}
           backgroundColor='white'
           translucent={false}
-          networkActivityIndicatorVisible={true}
+          networkActivityIndicatorVisible
         />
         <TextInput
           testID='search-bar'
