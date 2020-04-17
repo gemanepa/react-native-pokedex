@@ -1,0 +1,41 @@
+version: 2.1
+orbs:
+  rn: react-native-community/react-native@4.1.0
+
+jobs:
+  checkout_code:
+    executor: rn/linux_js
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths: .
+  analyse_ts:
+    executor: rn/linux_js
+    steps:
+      - attach_workspace:
+          at: .
+      - rn/yarn_install
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Typescript
+          command: yarn compile
+      - run:
+          name: Unit Tests
+          command: yarn test:unit
+
+workflows:
+  test:
+    jobs:
+      - checkout_code
+      - analyse_ts:
+          requires:
+            - checkout_code
+      - rn/android_build:
+          name: build_android_release
+          project_path: "android"
+          build_type: release
+          requires:
+            - analyse_ts
