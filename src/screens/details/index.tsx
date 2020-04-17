@@ -9,7 +9,7 @@ import { Pokemon } from '../../types';
 import { Props } from './details.types';
 /* eslint-enable no-unused-vars */
 
-function renderTypes (pokemon) {
+function renderTypes (pokemon: Pokemon) {
   return pokemon.types.map(type => {
     const { PRIMARY, SECONDARY } = getPokemonTypeByName(type);
     const testID = `${pokemon.name.toLowerCase()}-details-type-${type.toLowerCase()}`;
@@ -25,7 +25,7 @@ function renderTypes (pokemon) {
   });
 }
 
-function renderStats (pokemon) {
+function renderStats (pokemon: Pokemon) {
   const stats = Object.keys(pokemon.baseStats);
 
   return (
